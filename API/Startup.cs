@@ -40,6 +40,13 @@ namespace API
                  X.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
             services.AddApplicationServices();
             services.AddSwaggerDocumentation();
+            services.AddCors(Opt=>
+            {
+                Opt.AddPolicy("CorsPolicy",Policy=>
+            {
+                Policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:5001");
+            });
+            });
 
             
         }
@@ -55,7 +62,7 @@ namespace API
             app.UseRouting();
 
             app.UseStaticFiles();
-
+            app.UseCors("CorsPolicy");
             app.UseAuthorization();
             app.UseSwaggerDocumentation();
 
