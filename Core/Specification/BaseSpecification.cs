@@ -10,7 +10,7 @@ namespace Core.Specification
         {
         }
 
-        public BaseSpecification(Expression<Func<T, bool>> criteria)
+        public  BaseSpecification(Expression<Func<T, bool>> criteria)
         {
             Criteria = criteria;
         }
